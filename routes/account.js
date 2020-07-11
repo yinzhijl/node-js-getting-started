@@ -25,7 +25,7 @@ router.post('/save', async(req, res, next) => {
     // 取引先を新規登録する
     const client = await pool.connect();
     const insertData = {
-        text: 'insert into salesforce.account (name, phone, fax, accountuuid__c) values ($1, $2, $3, $4)',
+        text: 'insert into salesforce00yz.account (name, phone, fax, accountuuid__c) values ($1, $2, $3, $4)',
         values: [name, phone, fax, accountUUID],
     }
     const result = await client.query(insertData);
@@ -37,7 +37,7 @@ router.post('/save', async(req, res, next) => {
 
 router.get('/list', async(req, res, next) => {
     const client = await pool.connect();
-    const result = await client.query('select * from salesforce.account order by id DESC');
+    const result = await client.query('select * from salesforce00yz.account order by id DESC');
     const results = { 'results': (result) ? result.rows : null};
     client.release();
 
